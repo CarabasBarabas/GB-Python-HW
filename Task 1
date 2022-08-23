@@ -1,9 +1,9 @@
 #Задача 1#
 
-a = int(input('Введите число дня недели:'))
-if a > 7 or a <= 0:
-    print ('Ошибка')
-elif a >= 6:
-    print ('Выходной день')
-else:
-    print ('Будний день')
+a = input('Введите число:')
+suma = 0
+for x in a:
+    if x.isdigit() == False:
+        continue
+    suma += int(x)
+print("Сумма:", suma)
