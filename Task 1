@@ -1,5 +1,7 @@
 #Задача 1#
 
+Если убрать '== False', программа перестает считать 
+
 a = input('Введите число:')
 suma = 0
 for x in a:
@@ -7,3 +9,4 @@ for x in a:
         continue
     suma += int(x)
 print("Сумма:", suma)
+
