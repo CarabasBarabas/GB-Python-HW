@@ -7,3 +7,13 @@ k = len(l)
 a = random.sample(l, k)
 
 print(a)
+
+#решение без рандома
+
+l = input('Введите список:').split()
+a = l[1]
+b = l[1]
+l.append(a)
+l.remove(b)
+l.reverse()
+print(l)
