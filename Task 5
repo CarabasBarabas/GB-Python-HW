@@ -1,0 +1,9 @@
+#Задача 5#
+
+import random
+
+l = input('Введите список:').split()
+k = len(l)
+a = random.sample(l, k)
+
+print(a)
