@@ -1,8 +1,17 @@
 #Задача 2#
 
-n = int(input('Введите число:'))
-print('x', 'y', 'z', 'Результат проверки')
-for x in range(n):
-    for y in range(n):
-        for z in range(n):
-            print(x, y, z, (not(x or y or z)) == (-x and -y and -z ))
+l = [1, 5, 6, 8, 7, 6, 7]
+a = len(l)
+b = []
+
+while len(b) <= a // 2: 
+    if len(l) == 1:
+        b.append(l[0]*l[0])
+    elif len(l) == 2:
+        b.append(l[0]*l[-1])
+        break
+    else:   
+        b.append(l[0] * l[-1])
+        l.pop(0)
+        l.pop(-1)
+print(b)
