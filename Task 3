@@ -1,15 +1,11 @@
 #Задача 3#
 
-x = float(input('Введите Х:'))
-y = float(input('Введите Y:'))
-if x == 0 or y == 0:
-    print ('Ошибка')
-else:
-    if x > 0 and y > 0:
-        print ('1 четверть');
-    elif x < 0 and y < 0:
-            print ('3 четверть');
-    elif x > 0 and y < 0:
-        print ('4 четверть');
-    else:
-        print('2 четверть')
+
+l = input('Введите список:').split()
+b = []
+for i in l:
+    i = float(i)
+    y = i - int(i)
+    b.append(round(y, 3))
+y = max(b) - min(b) 
+print(round(y,3))
