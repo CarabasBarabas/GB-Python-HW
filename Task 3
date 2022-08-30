@@ -1,15 +1,18 @@
 #Задача 3#
 
-x = float(input('Введите Х:'))
-y = float(input('Введите Y:'))
-if x == 0 or y == 0:
-    print ('Ошибка')
-else:
-    if x > 0 and y > 0:
-        print ('1 четверть');
-    elif x < 0 and y < 0:
-            print ('3 четверть');
-    elif x > 0 and y < 0:
-        print ('4 четверть');
+l = [1, 6, 3, 5, 3, 4]
+b = []
+b.append(set(l))
+print(b)
+
+
+
+l = [1, 6, 3, 5, 3, 4]
+b = []
+for i in l:
+    for x in b:
+        if x == i:
+            break
     else:
-        print('2 четверть')
+        b.append(i)
+print(b)
