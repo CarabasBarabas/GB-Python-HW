@@ -1,16 +1,15 @@
-№Задача 4#
+#Задача 4#
 
-x = int(input('Введите номер координатной четверти:'))
-if x == 0:
-    print ('Ошибка')
-else:
-    if x == 1:
-        print ('Точка расположена в дипозоне x = {0.1; +oo} y = {0.1; +oo}');
-    elif x == 2:
-            print ('Точка расположена в дипозоне x = {-0.1; -oo} y = {0.1; +oo}');
-    elif x == 3:
-        print ('Точка расположена в дипозоне x = {-0.1; -oo} y = {-0.1; -oo}');
-    elif x == 4:
-        print('Точка расположена в дипозоне x = {0.1; +oo} y = {-0.1; -oo}')
-    else:
-        print ('Ошибка')
+import random
+
+k = int(input('Введите число:'))
+a = int(random.randint(0, 101))
+b = int(random.randint(0, 101))
+c = int(random.randint(0, 101))
+n = [a, b, c]
+str1 = a, '*x**', k,'+', b, '*x', '+', c
+print("".join(map(str,str1)))
+
+
+with open('Task4.txt', 'w') as file:
+    file.write("".join(map(str,str1)))
