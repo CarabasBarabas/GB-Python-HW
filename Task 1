@@ -1,0 +1,15 @@
+#Задача 1#
+
+with open('Task1.txt', 'w') as file:
+    b = 'Напишите проабвграмму, удаляющую изабв текста все слова, содержащие' 
+    file.write(b)
+
+file2 = open('Task1.txt', 'r')
+print(file2.read())
+
+
+file1 = open('Task1_1.txt', 'w') 
+file1.write(' '.join(filter(lambda x: 'абв' not in x, b.split())))
+   
+    
+file1.close()
