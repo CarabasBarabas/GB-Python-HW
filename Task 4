@@ -1,15 +1,27 @@
 #Задача 4#
 
-import random
+with open('Task5.txt', 'w') as t:
+    b = ('aaaaannnnrfgbyujjjjj')
+    t.write(b)
+    
+d = open('file5_1.txt', 'w')   
 
-k = int(input('Введите число:'))
-a = int(random.randint(0, 101))
-b = int(random.randint(0, 101))
-c = int(random.randint(0, 101))
-n = [a, b, c]
-str1 = a, '*x**', k,'+', b, '*x', '+', c
-print("".join(map(str,str1)))
+from collections import Counter
+s = Counter(b)
+d.write(str(s))
+d.close()
 
+f = open('file5_1.txt', 'r')
 
-with open('Task4.txt', 'w') as file:
-    file.write("".join(map(str,str1)))
+from collections import Counter
+s = Counter(b)
+z = []
+for k, value in s.items():
+    z.append(k * value)
+q = ''.join(z)
+
+with open('Task5_2.txt', 'w') as d:
+    d.write(str(q))
+    
+f.close()    
+
