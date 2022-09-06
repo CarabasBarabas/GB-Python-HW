@@ -1,11 +1,10 @@
 #Задача 1#
 
-Если убрать '== False', программа перестает считать 
 
 a = input('Введите число:')
 suma = 0
 for x in a:
-    if x.isdigit() == False:
+    if not x.isdigit():
         continue
     suma += int(x)
 print("Сумма:", suma)
