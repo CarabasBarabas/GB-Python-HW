@@ -1,0 +1,16 @@
+import Menu
+
+def choice3(na_vyhod):
+    if na_vyhod == 3:
+        newcontact(na_vhod)
+
+
+def newcontact(na_vhod):
+    with open('file.txt', "a") as file:
+        firstname = input('Введите имя:')
+        lastname = input('Введите фамилию:')
+        phone = input('Введите номер телефона в формате: 7 111 222 33 44:')
+        other = input('Введите примечание:')
+        contact = ("[" + firstname + " " + lastname + ", " + phone + ", " + other + "]")
+        file.write(contact)
+        print('Контакт' + contact + 'успешно добавлен')
