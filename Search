@@ -1,0 +1,15 @@
+import Menu
+
+def search(s):
+    with open('file.txt', "r") as file:
+        if s in file:
+            lines = file.readlines()
+            print(lines.index(s))
+        else:
+            print('Ошибка. Такого контакта не существует.')
+
+
+def choice2(na_vyhod):
+    if na_vyhod == 2:
+        s = input('Введите имя контакта: ')
+        search(s)
