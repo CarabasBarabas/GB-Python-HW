@@ -1,0 +1,8 @@
+import Menu
+
+def choice1 (na_vhod):
+    if na_vhod == 1:
+        with open('file.txt', 'r') as file:
+            print(file.read())
+
+choice1 (na_vhod)
