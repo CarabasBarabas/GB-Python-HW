@@ -1,0 +1,64 @@
+print('Телефонный справочник')
+
+file = 'file.txt'
+myfile = open(file, 'a+')
+myfile.close
+
+
+def menu():
+    print('\nМеню\n')
+    print('Выберите, что Вы хотите сделать:')
+    print('1. Посмотреть все контакты')
+    print('2. Загразуить контакт')
+    print('3. Найти контакт')
+    na_vhod = input('Выберите действие. Введите код действия 1, 2 или 3:')
+    if na_vhod == '1':
+        myfile = open(file, "r+")
+        filecontents = myfile.read()
+        if len(filecontents) == 0:
+            print('Нет контактов в справочнике')
+        else:
+            print(filecontents)
+        myfile.close
+        enter = input('Нажмите любую клавишу')
+        menu()
+    elif na_vhod == '2':
+        add()
+        enter = input('Нажмите любую клавишу')
+        menu()
+    elif na_vhod == "3":
+        search()
+        enter = input('Нажмите любую клавишу')
+        menu()
+    else:
+        print('Введите код действия 1, 2 или 3:\n')
+        enter = input('Нажмите любую клавишу')
+        menu()
+
+
+def search():
+    searchname = input('Введите имя контакта: ')
+    myfile = open(file, "r+")
+    found = False
+    for line in myfile:
+        if searchname in line:
+            print('Результат поиска:', end=line)
+            found = True
+            break
+    if found == False:
+        print('Ошибка. Такого контакта не существует.')
+
+
+def add():
+    firstname = input('Введите имя:')
+    lastname = input('Введите имя:')
+    phoneNum = input('Введите номер телефона в формате: 7 111 222 33 44:')
+    other = input('Введите примечание: ')
+    contact = ('[' + firstname + ' ' + lastname + ',' + phoneNum + ',' + other + ']')
+    myfile = open(file, 'a')
+    myfile.write(contact)
+    print('Контакт: ' + contact + ' успешно добавлен!')
+
+
+menu()
+
