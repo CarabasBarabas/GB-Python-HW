@@ -2,7 +2,7 @@ print('Телефонный справочник')
 
 file = 'file.txt'
 myfile = open(file, 'a+')
-myfile.close
+myfile.close()
 
 
 def menu():
