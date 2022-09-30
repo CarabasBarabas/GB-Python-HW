@@ -1,8 +1,0 @@
-#Задача 2#
-
-n = int(input('Введите число:'))
-print('x', 'y', 'z', 'Результат проверки')
-for x in range(n):
-    for y in range(n):
-        for z in range(n):
-            print(x, y, z, (not(x or y or z)) == (-x and -y and -z ))
