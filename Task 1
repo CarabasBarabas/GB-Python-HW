@@ -1,9 +1,90 @@
-#Задача 1#
+ссылка на бот: https://t.me/Rfktylfhm_bot
 
-a = int(input('Введите число дня недели:'))
-if a > 7 or a <= 0:
-    print ('Ошибка')
-elif a >= 6:
-    print ('Выходной день')
-else:
-    print ('Будний день')
+
+
+
+import telebot
+import datetime
+from telebot import types, callback_data
+
+bot = telebot.TeleBot('5497309578:AAE-6Kks3gaasTStZHQtcd-PMFgxIrbN-IY')
+
+type_of_numbers = ''
+type_of_operations = ''
+
+
+@bot.message_handler(commands=['start'])
+def take_start(msg: telebot.types.Message):
+    bot.send_message(chat_id=msg.from_user.id, text=f'{msg.from_user.full_name}! Бот-калькулятор приветсвует тебя!')
+    bot.send_message(chat_id=msg.from_user.id, text=f'Введите символ  арифметического действия + - * /')
+    bot.register_next_step_handler(msg, take_type_of_operations)
+    dtn = datetime.datetime.now()
+    botlogfile = open('TestBot.log', 'a')
+    print(dtn.strftime("%d-%m-%Y %H:%M"), 'Пользователь ' + msg.from_user.first_name, msg.from_user.id,
+          'написал следующее: ' + msg.text, file=botlogfile)
+    botlogfile.close()
+
+
+def take_type_of_operations(msg: telebot.types.Message):
+    if msg.text in {'+': 1, '-': 2, '*': 3, '/': 4}:
+        global type_of_operations
+        type_of_operations = {'+': 1, '-': 2, '*': 3, '/': 4}[msg.text]
+        bot.send_message(chat_id=msg.from_user.id, text=f'Ввеите два числа через пробел <Первое> <Второе>')
+        bot.register_next_step_handler(msg, take_numbers)
+    else:
+        bot.send_message(chat_id=msg.from_user.id, text=f'Ошибка, введите символ  арифметического действия + - * /')
+        bot.register_next_step_handler(msg, take_type_of_operations)
+        dtn = datetime.datetime.now()
+        botlogfile = open('TestBot.log', 'a')
+        print(dtn.strftime("%d-%m-%Y %H:%M"), 'Пользователь ' + msg.from_user.first_name, msg.from_user.id,
+              'написал следующее: ' + msg.text, file=botlogfile)
+        botlogfile.close()
+
+
+def take_numbers(msg: telebot.types.Message):
+    global isinstance
+    tmp = msg.text.split()
+    if (isinstance(e, (int, float)) for e in tmp):
+        itog = calcul(eval(tmp[0]), eval(tmp[-1]), type_of_operations)
+        bot.send_message(chat_id=msg.from_user.id, text=f'Результат {itog}')
+        bot.send_message(chat_id=msg.from_user.id, text=f'Для продолжения отправьте любое сообщение')
+        bot.register_next_step_handler(msg, take_start)
+    else:
+        bot.send_message(chat_id=msg.from_user.id, text=f'Ошибка! Ввеите два числа через пробел <Первое> <Второе>')
+        bot.register_next_step_handler(msg, take_numbers)
+    dtn = datetime.datetime.now()
+    botlogfile = open('TestBot.log', 'a')
+    print(dtn.strftime("%d-%m-%Y %H:%M"), 'Пользователь ' + msg.from_user.first_name, msg.from_user.id,
+          'написал следующее: ' + msg.text, file=botlogfile)
+    botlogfile.close()
+
+@bot.message_handler(commands=['help'])
+def start_message(message):
+    bot.send_message(message.chat.id, 'Перед тобой калькулятор, для начала работы напиши команду /start' )
+    dtn = datetime.datetime.now()
+    botlogfile = open('TestBot.log', 'a')
+    print(dtn.strftime("%d-%m-%Y %H:%M"), 'Пользователь ' + message.from_user.first_name, message.from_user.id,
+          'написал следующее: ' + message.text, file=botlogfile)
+    botlogfile.close()
+
+
+def calcul(number_1, number_2, operation):
+    if operation == 1:
+        result = str(number_1 + number_2)
+    elif operation == 2:
+        result = str(number_1 - number_2)
+    elif operation == 3:
+        result = str(number_1 * number_2)
+    elif operation == 4:
+        result = str(number_1 / number_2)
+    else:
+        result = None
+        print('Действие не поддерживается, вызывайте помощь')
+
+    return result
+
+
+print('Бот запущен')
+
+bot.polling()
+
